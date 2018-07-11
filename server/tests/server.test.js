@@ -15,18 +15,10 @@ const todos = [{
     completedAt: 333
 }];
 
-// Not worked, beforeEach hook error
-// beforeEach((done) => {
-//     Todo.remove({}).then(() => {
-//         return Todo.insertMany(todos);
-//     }).then(() => done());
-// });
-
 beforeEach((done) => {
     Todo.remove({}).then(() => {
-        Todo.insertMany(todos);
-        done();
-    });
+        return Todo.insertMany(todos);
+    }).then(() => done());
 });
 
 describe('POST /todos', () => {
